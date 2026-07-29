@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luke McCorrisken — Build the Founder. Build the Company.</title>
+<meta name="description" content="Founder and company transformation for ambitious, impact-led founders running £300k–£2m businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#faf9f6; --cream-2:#eef0ec; --cream-line: rgba(20,32,31,0.1);
+    --ink:#14201f; --ink-soft:#1c2c2b;
+    --forest:#167c7e; --forest-bright:#23a4a6; --forest-deep:#0e5153;
+    --rust:#c9a227; --rust-bright:#dbb94a;
+    --text-ink:#14201f; --text-ink-muted:#54615f90;
+    --text-ink-muted-solid:#55615f;
+    --text-cream:#fbfaf7; --text-cream-muted:rgba(251,250,247,0.75);
+    --maxw: 1200px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{ background:var(--cream); color:var(--text-ink); font-family:'Source Serif 4', Georgia, serif; font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  h1,h2,h3,.display{ font-family:'Archivo', sans-serif; font-weight:800; letter-spacing:-0.02em; line-height:1.03; }
+  .mono{ font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em; text-transform:uppercase; }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  section{position:relative;}
+  ::selection{background:var(--rust); color:var(--text-cream);}
+  :focus-visible{outline:2px solid var(--forest); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;} }
+
+  .grain{position:fixed; inset:0; z-index:2; pointer-events:none; opacity:0.025; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-stagger > *{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal-stagger.in > *{opacity:1; transform:translateY(0);}
+  .reveal-stagger.in > *:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.in > *:nth-child(2){transition-delay:.15s;}
+  .reveal-stagger.in > *:nth-child(3){transition-delay:.25s;}
+
+  nav{ position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:30px 44px;
+    background:transparent; border-bottom:1px solid transparent;
+    transition:background .45s ease, border-color .45s ease, padding .35s ease, box-shadow .45s ease;}
+  nav.scrolled{ background:rgba(250,249,246,0.86); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(201,162,39,0.35); padding:18px 44px; box-shadow:0 10px 30px -20px rgba(20,32,31,0.25);}
+
+  .nav-brand{display:flex; align-items:center; gap:13px;}
+  .nav-mark{
+    width:38px; height:38px; border-radius:50%; flex-shrink:0;
+    border:1px solid rgba(251,250,247,0.6);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Source Serif 4', serif; font-style:italic; font-weight:600; font-size:14px;
+    color:var(--text-cream); transition:color .45s ease, border-color .45s ease;
+  }
+  nav.scrolled .nav-mark{ color:var(--rust); border-color:rgba(201,162,39,0.55); }
+
+  .nav-name{ display:flex; flex-direction:column; line-height:1.18; color:var(--text-cream); transition:color .45s ease;}
+  .nav-name .first{ font-family:'IBM Plex Mono', monospace; font-weight:400; font-size:9.5px; letter-spacing:0.32em; text-transform:uppercase; opacity:0.72;}
+  .nav-name .last{ font-family:'Archivo', sans-serif; font-weight:700; font-size:15px; letter-spacing:0.05em;}
+  nav.scrolled .nav-name{color:var(--text-ink);}
+
+  .nav-cta{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--text-cream); border:1px solid rgba(251,250,247,0.55); background:transparent;
+    padding:11px 22px; border-radius:999px; transition:all .3s ease;}
+  .nav-cta:hover{background:var(--rust-bright); border-color:var(--rust-bright); color:var(--ink);}
+  nav.scrolled .nav-cta{color:var(--ink); border-color:rgba(20,32,31,0.28);}
+  nav.scrolled .nav-cta:hover{background:var(--rust-bright); border-color:var(--rust-bright); color:var(--ink);}
+
+  /* ---------- HERO — bold color block, not a moody photo ---------- */
+  .hero{
+    min-height:100svh; display:flex; flex-direction:column; justify-content:flex-end; padding:170px 44px 100px; position:relative; overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(14,81,83,0.35) 0%, rgba(14,60,62,0.55) 45%, rgba(10,20,22,0.88) 100%),
+      linear-gradient(90deg, rgba(14,81,83,0.35), rgba(14,81,83,0.1) 40%),
+      url('luke-balcony-hero.jpg') center 28% / cover no-repeat;
+  }
+  .hero-inner{max-width:var(--maxw); margin:0 auto; width:100%; position:relative; z-index:1;}
+  .hero h1{ font-size:clamp(2.6rem, 6.6vw, 5.4rem); max-width:17ch; margin-bottom:36px; color:var(--text-cream);}
+  .hero h1 .accent{ font-style:italic; font-family:'Source Serif 4', serif; font-weight:600; letter-spacing:0; color:var(--text-cream); position:relative; display:inline-block;}
+  .hero h1 .accent::after{ content:""; position:absolute; left:2px; right:2px; bottom:6px; height:10px; background:var(--rust-bright); opacity:0.75; z-index:-1;}
+  .hero-sub{ font-size:1.24rem; color:var(--text-cream-muted); max-width:52ch; margin-bottom:44px; font-weight:400;}
+  .cta-row{display:flex; gap:18px; flex-wrap:wrap; align-items:center;}
+  .btn-primary{ font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; background:var(--rust-bright); color:var(--text-cream);
+    padding:18px 32px; border-radius:2px; font-weight:500; transition:all .2s ease; display:inline-block;}
+  .btn-primary:hover{background:var(--rust); transform:translateY(-2px); box-shadow:0 10px 30px -8px rgba(178,85,46,0.55);}
+  .btn-secondary{ font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-cream);
+    padding:18px 4px; border-bottom:1px solid rgba(248,244,233,0.4); transition:all .2s ease;}
+  .btn-secondary:hover{border-color:var(--text-cream); color:#e8c468; padding-left:8px;}
+
+  /* ---------- shared section shells ---------- */
+  .section-cream{background:var(--cream); padding:130px 44px;}
+  .section-forest{background:var(--forest-deep); padding:130px 44px; color:var(--text-cream);}
+  .section-inner{max-width:var(--maxw); margin:0 auto;}
+  .section-head{max-width:680px; margin-bottom:64px;}
+  .section-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--rust); margin-bottom:20px; display:flex; align-items:center; gap:12px;}
+  .section-eyebrow::before{content:""; width:26px; height:1px; background:var(--rust); display:inline-block;}
+  .section-forest .section-eyebrow{color:#e8c468;}
+  .section-forest .section-eyebrow::before{background:#e8c468;}
+  h2{font-size:clamp(2.1rem, 4.2vw, 3.2rem); margin-bottom:22px;}
+  .lede{font-size:1.18rem; max-width:58ch; color:var(--text-ink-muted-solid);}
+  .section-forest .lede{color:var(--text-cream-muted);}
+
+  /* ---------- ABOUT ME — cutout portrait breaking the frame ---------- */
+  .about-wrap{padding:150px 44px 130px; background:var(--cream); position:relative; overflow:hidden;}
+  .about-inner{max-width:var(--maxw); margin:0 auto; display:grid; grid-template-columns:0.85fr 1.15fr; gap:0 70px; align-items:center;}
+  @media (max-width:920px){ .about-inner{grid-template-columns:1fr; gap:50px;} }
+  .about-cutout{ position:relative; }
+  .about-cutout-photo{
+    aspect-ratio:3/4; border-radius:18px; position:relative; overflow:hidden;
+    background:var(--forest-deep);
+    box-shadow:0 50px 100px -30px rgba(28,31,27,0.35);
+  }
+  .about-cutout-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .about-cutout-photo span{font-family:'IBM Plex Mono', monospace; font-size:11px; color:rgba(248,244,233,0.6); letter-spacing:0.06em;}
+  .about-cutout-ring{ position:absolute; top:-24px; right:-24px; width:88px; height:88px; border-radius:50%; border:1px solid var(--cream-line); z-index:-1;}
+  .about-copy p{margin-bottom:22px; font-size:1.15rem; color:var(--text-ink);}
+  .about-copy p.lead-line{font-family:'Archivo', sans-serif; font-weight:700; font-size:1.55rem; letter-spacing:-0.01em; line-height:1.28; margin-bottom:28px; color:var(--forest-deep);}
+  .about-copy p.muted{color:var(--text-ink-muted-solid); font-size:1.02rem;}
+
+  /* ---------- OUTCOMES — bold rust block for color contrast ---------- */
+  .outcomes-wrap{
+    background:
+      radial-gradient(ellipse 70% 50% at 85% 0%, rgba(201,162,39,0.14), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 0% 100%, rgba(22,124,126,0.06), transparent 60%),
+      var(--cream);
+    color:var(--ink); padding:130px 44px;
+  }
+  .outcomes-wrap .section-eyebrow{color:var(--rust);}
+  .outcomes-wrap .section-eyebrow::before{background:var(--rust);}
+  .outcomes-wrap .lede{color:var(--text-ink-muted-solid);}
+  .outcome-list{display:flex; flex-direction:column; margin-top:60px;}
+  .outcome-row{ display:grid; grid-template-columns:110px 1fr; gap:40px; padding:44px 0; position:relative; align-items:start; transition:padding-left .3s ease;}
+  .outcome-row::before{content:""; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(to right, var(--rust) 0%, rgba(201,162,39,0.15) 18%, transparent 55%);}
+  .outcome-row:hover{padding-left:14px;}
+  .outcome-tag{
+    font-family:'Source Serif 4', serif; font-style:italic; font-weight:600; font-size:2.3rem;
+    background:linear-gradient(160deg, var(--rust-bright), var(--rust) 70%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    padding-top:2px; display:inline-block;
+  }
+  .outcome-row h3{font-size:1.5rem; margin-bottom:12px; color:var(--ink);}
+  .outcome-row p{color:var(--text-ink-muted-solid); max-width:60ch; font-size:1.04rem;}
+  @media (max-width:640px){.outcome-row{grid-template-columns:1fr; gap:12px;}}
+  .guarantee{
+    margin-top:56px; padding:28px 32px; border:1px solid rgba(201,162,39,0.35); border-radius:14px;
+    background:rgba(201,162,39,0.06); color:var(--ink); font-size:1.02rem; font-weight:600; max-width:70ch;
+  }
+
+  /* ---------- TESTIMONIALS — cream cards floating on forest canvas ---------- */
+  .proof-row{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:60px;}
+  @media (max-width:900px){.proof-row{grid-template-columns:1fr; gap:18px;}}
+  .proof-cell{ background:var(--cream); color:var(--text-ink); padding:38px 30px; display:flex; flex-direction:column; justify-content:space-between;
+    min-height:230px; border-radius:16px; box-shadow:0 24px 50px -20px rgba(0,0,0,0.35);}
+  .proof-cell:nth-child(2){ transform:translateY(26px); }
+  @media (max-width:900px){ .proof-cell:nth-child(2){ transform:none; } }
+  .proof-cell .mark{font-family:'Archivo',sans-serif; font-size:2.2rem; font-weight:900; color:var(--cream-2); line-height:1; margin-bottom:16px;}
+  .proof-cell blockquote{font-style:italic; font-size:1.04rem; margin-bottom:20px;}
+  .proof-who-row{display:flex; align-items:center; gap:12px;}
+  .proof-avatar{
+    width:38px; height:38px; border-radius:50%; flex-shrink:0; overflow:hidden;
+    background:linear-gradient(155deg, var(--forest-bright), var(--forest-deep));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text-cream); border:1px solid rgba(201,162,39,0.4);
+  }
+  .proof-avatar img{width:100%; height:100%; object-fit:cover;}
+  .proof-cell .who{font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-ink-muted-solid); line-height:1.5;}
+
+  /* ---------- BOOK A CALL ---------- */
+  .book{ padding:140px 44px 160px; background:var(--cream); text-align:center; position:relative;}
+  .book-inner{max-width:720px; margin:0 auto;}
+  .book h2{max-width:16ch; margin-left:auto; margin-right:auto; color:var(--forest-deep);}
+  .book .lede{margin:0 auto 48px;}
+  .book-panel{
+    background:var(--forest-deep); color:var(--text-cream); border-radius:22px; padding:50px 40px; box-shadow:0 40px 90px -30px rgba(28,31,27,0.3);
+    display:flex; flex-direction:column; align-items:center; gap:18px;
+  }
+  @media (max-width:600px){ .book-panel{padding:34px 24px;} }
+  .book-form-embed{
+    width:100%; max-width:640px; margin:0 auto 8px; border-radius:14px; overflow:hidden; background:rgba(248,244,233,0.04);
+  }
+  .book-form-embed iframe{ width:100%; height:1042px; border:none; display:block; }
+  @media (max-width:600px){ .book-form-embed iframe{ height:1400px; } }
+
+  footer{ padding:52px 44px; border-top:1px solid var(--cream-line); background:var(--cream); display:flex; justify-content:space-between; flex-wrap:wrap; gap:16px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--text-ink-muted-solid); letter-spacing:0.04em;}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav>
+  <div class="nav-brand">
+    <div class="nav-mark" aria-hidden="true">LM</div>
+    <span class="nav-name"><span class="first">Founder &amp; Coach</span><span class="last">Luke McCorrisken</span></span>
+  </div>
+  <a class="nav-cta" href="#book">Book a Call</a>
+</nav>
+
+<!-- HERO — MISSION FIRST, BOLD COLOR -->
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Making the world a better place <span class="accent">one business at a time.</span></h1>
+    <p class="hero-sub">I help founders grow themselves and their companies so they can make more money, create more impact and live with greater freedom.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="#book">Book a Call</a>
+      <a class="btn-secondary" href="#about">Meet Luke</a>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT ME -->
+<section class="about-wrap" id="about">
+  <div class="about-inner">
+    <div class="about-cutout reveal">
+      <div class="about-cutout-ring" aria-hidden="true"></div>
+      <div class="about-cutout-photo"><img src="luke-portrait.jpg" alt="Luke McCorrisken"></div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="section-eyebrow">Who I Am</span>
+      <p class="lead-line">I'm Luke McCorrisken.</p>
+      <p>Over the past eight years, I've started and operated eight businesses, studied at Genoa Entrepreneurship School and Columbia Business School, and been mentored by senior leaders from Apple, Google, Stripe and other world class companies.</p>
+      <p>What I care about most is understanding people, businesses and what allows both to grow. I'm passionate about psychology, innovation, nature and adventure.</p>
+      <p>Today, I bring those worlds together, helping impact led founders strengthen themselves, build stronger companies and create a greater positive impact.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes-wrap" id="outcomes">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">What You Get</span>
+      <h2>More revenue. More impact. A better life.</h2>
+      <p class="lede">Every founder leaves the partnership with the same three things — no matter what industry they're in.</p>
+    </div>
+    <div class="outcome-list reveal-stagger">
+      <div class="outcome-row">
+        <span class="outcome-tag">01</span>
+        <div><h3>The three decisions that unlock the most growth</h3>
+        <p>We analyse the whole business and identify the three highest leverage decisions most likely to unlock significant revenue and scalability.</p></div>
+      </div>
+      <div class="outcome-row">
+        <span class="outcome-tag">02</span>
+        <div><h3>The capacity to lead the next level</h3>
+        <p>We rewire the patterns affecting your confidence, decisions and execution so you operate at a higher level and enjoy the journey more.</p></div>
+      </div>
+      <div class="outcome-row">
+        <span class="outcome-tag">03</span>
+        <div><h3>A clear plan that gets implemented</h3>
+        <p>You get a focused 90 day roadmap, real accountability and direct support to turn the right decisions into revenue, freedom and greater impact.</p></div>
+      </div>
+    </div>
+    <p class="guarantee">If, by the end of the partnership, you do not believe you have received everything promised above, you will receive 100% of your money back.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section-forest" id="proof">
+  <div class="section-inner">
+    <div class="section-head reveal">
+      <span class="section-eyebrow">Client Success</span>
+      <h2>What it's looked like for founders in the room with me.</h2>
+    </div>
+    <div class="proof-row reveal-stagger">
+      <div class="proof-cell"><div class="mark">"</div>
+        <blockquote>Before working with Luke, our positioning wasn't landing. He challenged my thinking, refined our messaging, held me accountable, and helped me make the right decisions at every stage. As a result, we hired a CTO from Microsoft and completely changed the trajectory of VaultSplit.</blockquote>
+        <div class="proof-who-row">
+          <div class="proof-avatar"><img src="jeff-vaultsplit.jpg" alt="Jeff, CEO of VaultSplit"></div>
+          <div class="who">Jeff<br>CEO of VaultSplit</div>
+        </div>
+      </div>
+      <div class="proof-cell"><div class="mark">"</div>
+        <blockquote>After three years of unprofitable trading, one session completely changed how I handled FOMO and pressure. Three hours later, I closed £3.6k. I now trade calmer, trust my setup and can reset my state in minutes.</blockquote>
+        <div class="proof-who-row">
+          <div class="proof-avatar">D</div>
+          <div class="who">Deep<br>Futures Trader</div>
+        </div>
+      </div>
+      <div class="proof-cell"><div class="mark">"</div>
+        <blockquote>I went from not believing I could build a company to leading Faithful Ventures, showing up with confidence, and bringing world-class mentors who've raised over £100M into our programme to help our founders succeed.</blockquote>
+        <div class="proof-who-row">
+          <div class="proof-avatar"><img src="jacob-faithfulventures.jpg" alt="Jacob, Ecosystem Builder of Faithful Ventures"></div>
+          <div class="who">Jacob<br>Ecosystem Builder of Faithful Ventures</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK A CALL -->
+<section class="book" id="book">
+  <div class="book-inner">
+    <span class="section-eyebrow reveal" style="justify-content:center;">Get Started</span>
+    <h2 class="reveal">Let's find the three decisions that change your next year.</h2>
+    <p class="lede reveal">Show me you're interested. Fill in a couple of quick details and I'll personally text you back with next steps.</p>
+    <div class="book-panel reveal">
+      <div class="book-form-embed">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSel2cpIyc3_Z3BLM9WVlUIU5JeqLM3xeEqyO0gcwoZA0O8F9A/viewform?embedded=true" width="640" height="1042" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Luke McCorrisken</span>
+  <span>lukemccorrisken.com</span>
+</footer>
+
+<script>
+  const heroEl = document.querySelector('.hero');
+  const navEl = document.querySelector('nav');
+  if (heroEl && navEl) {
+    const navIo = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        navEl.classList.toggle('scrolled', !entry.isIntersecting);
+      });
+    }, { threshold: 0, rootMargin: '-84px 0px 0px 0px' });
+    navIo.observe(heroEl);
+  }
+
+  const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+  const revealIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); revealIo.unobserve(entry.target); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealIo.observe(el));
+</script>
+
+</body>
+</html>
